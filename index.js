@@ -24,9 +24,7 @@ addBtn.addEventListener('click', (e) => {
             console.log(e.target)
             console.log(e.target.parentNode)
             e.target.parentNode.remove()
-            // console.log("first")
-            // document.getElementById('singleTodo').remove(div)
-            // document.getElementById('allTodo').removeChild(div)
+            
         })
         i++
     }
