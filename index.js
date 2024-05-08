@@ -30,7 +30,3 @@ addBtn.addEventListener('click', (e) => {
     }
     
 })
-
-// document.getElementById('remBtn').addEventListener('click', () => {
-//     document.getElementById('allTodo').removeChild(div)
-// })
