@@ -15,25 +15,31 @@ addBtn.addEventListener('click', (e) => {
         console.log(div)
         div.innerHTML = `
             <h2>${todoInput.value}</h2>
-            <input type="checkbox" name="" id="checkbox${i}">
-            <button id="remBtn${i}">Remove Todo</button>
+            <input type="checkbox" name="" id="checkbox${i}" onclick=checkboxTodo(${i})>
+            <button id="remBtn${i}" onclick=removeTodo(${i})>Remove Todo</button>
         `
         document.getElementById('allTodo').appendChild(div)
         todoInput.value = ''
-        document.getElementById(`remBtn${i}`).addEventListener('click', (e) => {
-            // console.log(e.target)
-            // console.log(e.target.parentNode)
-            e.target.parentNode.remove()
-            
-        })
-        let checkbox = document.getElementById(`checkbox${i}`)
-        checkbox.addEventListener('click', (e) => {
-            console.log(checkbox)
-            // console.log(e.target.previousElementSibling.innerHTML);
-            // e.target.previousElementSibling.innerHTML = e.target.previousElementSibling.innerHTML.strike()
-            e.target.previousElementSibling.classList.toggle("strike")
-        })
+
+        // document.getElementById(`remBtn${i}`).addEventListener('click', (e) => {
+        //     e.target.parentNode.remove()
+        // })
+
+        // let checkbox = document.getElementById(`checkbox${i}`)
+        // checkbox.addEventListener('click', (e) => {
+        //     e.target.previousElementSibling.classList.toggle("strike")
+        // })
+
         i++
     }
 })
 
+function removeTodo(id) {
+    let div = document.getElementById(`remBtn${id}`)
+    div.parentNode.remove()
+}
+
+function checkboxTodo(id) {
+    let checkbox = document.getElementById(`checkbox${id}`)
+    checkbox.previousElementSibling.classList.toggle("strike")
+}
