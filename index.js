@@ -15,7 +15,7 @@ addBtn.addEventListener('click', (e) => {
         console.log(div)
         div.innerHTML = `
             <h2>${todoInput.value}</h2>
-            <input type="checkbox" name="" id="checkbox${i}" onclick=checkboxTodo(${i})>
+            <input type="checkbox" name="" id="checkbox${i}" onclick=markTodo(${i})>
             <button id="remBtn${i}" onclick=removeTodo(${i})>Remove Todo</button>
         `
         document.getElementById('allTodo').appendChild(div)
@@ -39,7 +39,7 @@ function removeTodo(id) {
     div.parentNode.remove()
 }
 
-function checkboxTodo(id) {
+function markTodo(id) {
     let checkbox = document.getElementById(`checkbox${id}`)
     checkbox.previousElementSibling.classList.toggle("strike")
 }
