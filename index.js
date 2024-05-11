@@ -40,8 +40,8 @@ addBtn.addEventListener('click', (e) => {
     } 
     else {
         data.push({title : todoInput.value, isCompleted : false})
-        localStorage.setItem('allTodo',JSON.stringify(data))
-        displayTodo()
+        localStorage.setItem('allTodo',JSON.stringify(data))    // Update in Local storage
+        displayTodo()   // Re-render todos
         todoInput.value = ''
 
         // document.getElementById(`remBtn${i}`).addEventListener('click', (e) => {
@@ -59,13 +59,14 @@ function removeTodo(id) {
     let div = document.getElementById(`remBtn${id}`)
     div.parentNode.remove()   // To remove todo from UI
     data.splice(id,1)   // To remove it from local storage
-    localStorage.setItem('allTodo', JSON.stringify(data))
-    displayTodo()
+    localStorage.setItem('allTodo', JSON.stringify(data))    // Update in Local storage
+    displayTodo()   // Re-render todos
 }
 
 function markTodo(id) {
     let checkbox = document.getElementById(`checkbox${id}`)
     checkbox.previousElementSibling.classList.toggle("strike")  // To mark todo in UI
     data[id].isCompleted = !data[id].isCompleted     // To mark todo in Local storage
-    localStorage.setItem('allTodo', JSON.stringify(data))
+    localStorage.setItem('allTodo', JSON.stringify(data))    // Update in Local storage
+    displayTodo()   // Re-render todos
 }
