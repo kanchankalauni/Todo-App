@@ -1,5 +1,4 @@
 let addBtn = document.getElementById('addBtn')
-let i = 1
 
 let data = JSON.parse(localStorage.getItem('allTodo')) || []
 
@@ -10,18 +9,18 @@ window.addEventListener('storage', () => {
 
 function displayTodo() {
     document.getElementById('allTodo').innerHTML = ''
-    data.map((singleTodo) => {
-        console.log(singleTodo)
-        todoStructure(singleTodo)
+    data.map((singleTodo,i) => {
+        // console.log(singleTodo)
+        todoStructure(singleTodo,i)
     })
 }
 
 displayTodo()
 
-function todoStructure(singleTodo) {
+function todoStructure(singleTodo,i) {
     let div = document.createElement('div')
     div.setAttribute('class', 'singleTodo')
-    console.log("div 1",div)
+    // console.log("div 1",div)
     div.innerHTML = `
         <h2>${singleTodo}</h2>
         <input type="checkbox" name="" id="checkbox${i}" onclick=markTodo(${i})>
@@ -35,13 +34,13 @@ function todoStructure(singleTodo) {
 addBtn.addEventListener('click', (e) => {
     e.preventDefault()
     let todoInput = document.getElementById('todoInput')
-    data.push(todoInput.value)
     // console.log(todoInput)
     if (todoInput.value == '') {
         alert("Enter any todo first !")
         return
     } 
     else {
+        data.push(todoInput.value)
         localStorage.setItem('allTodo',JSON.stringify(data))
         displayTodo()
         todoInput.value = ''
@@ -54,14 +53,15 @@ addBtn.addEventListener('click', (e) => {
         // checkbox.addEventListener('click', (e) => {
         //     e.target.previousElementSibling.classList.toggle("strike")
         // })
-
-        
     }
 })
 
 function removeTodo(id) {
     let div = document.getElementById(`remBtn${id}`)
-    div.parentNode.remove()
+    div.parentNode.remove()   // To remove todo from UI
+    data.splice(id,1)   // To remove it from local storage
+    localStorage.setItem('allTodo', JSON.stringify(data))
+    displayTodo()
 }
 
 function markTodo(id) {
