@@ -14,8 +14,6 @@ function displayTodo() {
     })
 }
 
-displayTodo()
-
 function todoStructure({title,isCompleted},i) {
     let div = document.createElement('div')
     div.setAttribute('class', 'singleTodo')
@@ -70,3 +68,5 @@ function markTodo(id) {
     localStorage.setItem('allTodo', JSON.stringify(data))    // Update in Local storage
     displayTodo()   // Re-render todos
 }
+
+displayTodo()
