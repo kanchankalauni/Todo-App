@@ -10,7 +10,6 @@ window.addEventListener('storage', () => {
 function displayTodo() {
     document.getElementById('allTodo').innerHTML = ''
     data.map((singleTodo,i) => {
-        // console.log(singleTodo)
         todoStructure(singleTodo,i)
     })
 }
@@ -20,7 +19,6 @@ displayTodo()
 function todoStructure({title,isCompleted},i) {
     let div = document.createElement('div')
     div.setAttribute('class', 'singleTodo')
-    // console.log("div 1",div)
     div.innerHTML = `
         <h2>${title}</h2>
         <input type="checkbox" name="" ${isCompleted ? "checked" : ""} id="checkbox${i}" onclick=markTodo(${i})>
@@ -31,14 +29,11 @@ function todoStructure({title,isCompleted},i) {
     }
 
     document.getElementById('allTodo').appendChild(div)
-    
-    // console.log("div 2",div)
 }
 
 addBtn.addEventListener('click', (e) => {
     e.preventDefault()
     let todoInput = document.getElementById('todoInput')
-    // console.log(todoInput)
     if (todoInput.value == '') {
         alert("Enter any todo first !")
         return
