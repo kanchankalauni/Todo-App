@@ -3,7 +3,10 @@ let i = 1
 
 let data = JSON.parse(localStorage.getItem('allTodo')) || []
 
-
+window.addEventListener('storage', () => {
+    document.getElementById('allTodo').innerHTML = ''
+    data = []
+})
 
 function displayTodo() {
     document.getElementById('allTodo').innerHTML = ''
