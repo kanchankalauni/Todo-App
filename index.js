@@ -17,17 +17,21 @@ function displayTodo() {
 
 displayTodo()
 
-function todoStructure(singleTodo,i) {
+function todoStructure({title,isCompleted},i) {
     let div = document.createElement('div')
     div.setAttribute('class', 'singleTodo')
     // console.log("div 1",div)
     div.innerHTML = `
-        <h2>${singleTodo}</h2>
-        <input type="checkbox" name="" id="checkbox${i}" onclick=markTodo(${i})>
+        <h2>${title}</h2>
+        <input type="checkbox" name="" ${isCompleted ? "checked" : ""} id="checkbox${i}" onclick=markTodo(${i})>
         <button id="remBtn${i}" onclick=removeTodo(${i})>Remove Todo</button>
     `
+    if (isCompleted) {
+        div.getElementsByTagName('h2')[0].classList.add('strike')
+    }
+
     document.getElementById('allTodo').appendChild(div)
-    i++
+    
     // console.log("div 2",div)
 }
 
@@ -40,7 +44,7 @@ addBtn.addEventListener('click', (e) => {
         return
     } 
     else {
-        data.push(todoInput.value)
+        data.push({title : todoInput.value, isCompleted : false})
         localStorage.setItem('allTodo',JSON.stringify(data))
         displayTodo()
         todoInput.value = ''
@@ -66,5 +70,7 @@ function removeTodo(id) {
 
 function markTodo(id) {
     let checkbox = document.getElementById(`checkbox${id}`)
-    checkbox.previousElementSibling.classList.toggle("strike")
+    checkbox.previousElementSibling.classList.toggle("strike")  // To mark todo in UI
+    data[id].isCompleted = !data[id].isCompleted     // To mark todo in Local storage
+    localStorage.setItem('allTodo', JSON.stringify(data))
 }
