@@ -19,8 +19,8 @@ function todoStructure({title,isCompleted},i) {
     div.setAttribute('class', 'singleTodo')
     div.innerHTML = `
         <h2>${title}</h2>
-        <input type="checkbox" name="" ${isCompleted ? "checked" : ""} id="checkbox${i}" onclick=markTodo(${i})>
-        <button id="remBtn${i}" onclick=removeTodo(${i})>Remove Todo</button>
+        <input type="checkbox" name="" ${isCompleted ? "checked" : ""} id="checkbox${i}" class="checkBox" onclick=markTodo(${i})>
+        <button id="remBtn${i}" class="remBtn" onclick=removeTodo(${i})>Remove Todo</button>
     `
     if (isCompleted) {
         div.getElementsByTagName('h2')[0].classList.add('strike')
