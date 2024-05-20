@@ -65,7 +65,7 @@ function removeTodo(id) {
 
 function markTodo(id) {
     let checkbox = document.getElementById(`checkbox${id}`)
-    checkbox.previousElementSibling.classList.toggle("strike")  // To mark todo in UI
+    checkbox.parentElement.previousElementSibling.classList.toggle("strike")  // To mark todo in UI
     data[id].isCompleted = !data[id].isCompleted     // To mark todo in Local storage
     localStorage.setItem('allTodo', JSON.stringify(data))    // Update in Local storage
     displayTodo()   // Re-render todos
